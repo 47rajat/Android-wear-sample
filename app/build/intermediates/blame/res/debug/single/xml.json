@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/xml/widget_info_today.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/xml/widget_info_today.xml"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/xml/authenticator.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/xml/authenticator.xml"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/xml/pref_general.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/xml/pref_general.xml"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/xml/widget_info_detail.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/xml/widget_info_detail.xml"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/xml/syncadapter.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/xml/syncadapter.xml"
+    }
+]

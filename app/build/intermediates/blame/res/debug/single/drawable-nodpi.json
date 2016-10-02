@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-nodpi/widget_preview_today.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-nodpi/widget_preview_today.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-nodpi/widget_preview_detail.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-nodpi/widget_preview_detail.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-nodpi/ic_muzei.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-nodpi/ic_muzei.png"
+    }
+]

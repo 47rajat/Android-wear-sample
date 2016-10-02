@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/fragment_main.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/layout-sw600dp/fragment_main.xml"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/activity_main.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/layout-sw600dp/activity_main.xml"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    }
+]

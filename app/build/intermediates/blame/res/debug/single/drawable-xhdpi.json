@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_light_clouds.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_light_clouds.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_fog.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_fog.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_clear.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_clear.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_clear.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_clear.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_fog.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_fog.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_logo.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_logo.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_storm.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_storm.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_current_location.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_current_location.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_snow.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_snow.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_storm.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_storm.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_cloudy.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_cloudy.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_light_rain.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_light_rain.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_rain.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_rain.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_light_rain.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_light_rain.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_light_clouds.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_light_clouds.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_snow.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_snow.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_rain.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_rain.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_status.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/ic_status.png"
+    },
+    {
+        "merged": "/home/stark/Udacity/Advanced_Android_Development/app/build/intermediates/res/merged/debug/drawable-xhdpi/art_clouds.png",
+        "source": "/home/stark/Udacity/Advanced_Android_Development/app/src/main/res/drawable-xhdpi/art_clouds.png"
+    }
+]
