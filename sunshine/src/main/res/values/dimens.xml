@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="clock_font_size">36sp</dimen>
+    <dimen name="paddingSmall">8dp</dimen>
+    <dimen name="paddingMedium">16dp</dimen>
+
+    <dimen name="digital_text_size">36dp</dimen>
+    <dimen name="digital_text_size_round">36dp</dimen>
+
+    <dimen name="digital_x_offset">50dp</dimen>
+    <dimen name="digital_x_offset_round">60dp</dimen>
+
+    <dimen name="digital_y_offset">80dp</dimen>
+
+    <dimen name="date_y_offset">100dp</dimen>
+
+    <dimen name="date_x_offset">35dp</dimen>
+    <dimen name="date_x_offset_round">45dp</dimen>
+
+    <dimen name="date_text_size">16dp</dimen>
+
+    <dimen name="temp_detail_y_offset">145dp</dimen>
+
+    <dimen name="max_temp_x_offset_round">95dp</dimen>
+    <dimen name="max_temp_x_offset">85dp</dimen>
+
+    <dimen name="min_temp_x_offset_round">130dp</dimen>
+    <dimen name="min_temp_x_offset">120dp</dimen>
+
+    <dimen name="temp_text_size">24dp</dimen>
+
+    <dimen name="icon_height">48dp</dimen>
+    <dimen name="icon_width">48dp</dimen>
+
+    <dimen name="icon_y_offset">110dp</dimen>
+
+
+</resources>

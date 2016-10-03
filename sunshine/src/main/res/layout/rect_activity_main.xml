@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context="com.example.android.sunshine.app.MainActivity"
+    tools:deviceIds="wear_round">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/clock_font_size"
+            android:layout_gravity="center"
+            android:id="@+id/textClock" />
+
+        <TextView android:id="@+id/today_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:hint="@string/no_sync"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/paddingSmall"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon_width"
+                android:layout_height="@dimen/icon_height"
+                android:background="@drawable/art_clear"
+                android:id="@+id/weather_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/paddingSmall"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:hint="@string/no_sync"
+                android:id="@+id/temp_high"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:hint="@string/no_sync"
+                android:id="@+id/temp_low"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

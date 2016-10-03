@@ -175,6 +175,24 @@ public class Utility {
         }
     }
 
+    public static String getFullWearableDayString(Context context, long dateInMillis) {
+        String day = getWearableDayName(context, dateInMillis);
+        int formatId = R.string.format_full_friendly_date;
+        return String.format(context.getString(
+                formatId,
+                day,
+                getFormattedMonthDay(context,dateInMillis)
+        ));
+    }
+
+
+    public static String getWearableDayName(Context context, long dateInMillis) {
+//        Time time = new Time();
+//        time.setToNow();
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
+        return dayFormat.format(dateInMillis);
+    }
+
     /**
      * Converts db date format to the format "Month day", e.g "June 24".
      * @param context Context to use for resource localization
