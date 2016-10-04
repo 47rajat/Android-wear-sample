@@ -28,16 +28,30 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.WindowInsets;
-import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.Asset;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataItem;
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.DataMapItem;
+import com.google.android.gms.wearable.Wearable;
+
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -62,11 +76,6 @@ public class MyWatchFace extends CanvasWatchFaceService {
      */
     private static final int MSG_UPDATE_TIME = 0;
     private static final String LOG_TAG = MyWatchFace.class.getSimpleName();
-
-    public static String mDate = "FRI, JUL 14 2015";
-    public static String mMaxTemp = "25";
-    public static String mMinTemp = "16";
-    public static Bitmap mWeatherIcon;
 
     @Override
     public Engine onCreateEngine() {
@@ -93,9 +102,26 @@ public class MyWatchFace extends CanvasWatchFaceService {
         }
     }
 
-    private class Engine extends CanvasWatchFaceService.Engine {
+    private class Engine extends CanvasWatchFaceService.Engine implements DataApi.DataListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
         final Handler mUpdateTimeHandler = new EngineHandler(this);
         boolean mRegisteredTimeZoneReceiver = false;
+
+        GoogleApiClient apiClient = new GoogleApiClient.Builder(MyWatchFace.this)
+                .addApi(Wearable.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        private static final String DATA_TODAY = "/dataToday";
+        private final static String WEARABLE_HIGH_TEMP = "highTemp";
+        private final static String WEARABLE_LOW_TEMP = "lowTemp";
+        private final static String WEARABLE_IMAGE_RES = "imageRes";
+        private final static String WEARABLE_DATE = "dateToday";
+
+        String mDate = null;
+        String mMaxTemp = null;
+        String mMinTemp = null;
+        Bitmap mWeatherIcon;
+
         Paint mBackgroundPaint;
         Paint mTextPaint;
         boolean mAmbient;
@@ -167,8 +193,10 @@ public class MyWatchFace extends CanvasWatchFaceService {
 
             mIconHeight = (int) resources.getDimension(R.dimen.icon_height);
             mIconWidth = (int) resources.getDimension(R.dimen.icon_width);
-            mWeatherIcon = BitmapFactory.decodeResource(resources, R.drawable.art_clear);
-            mWeatherIcon = Bitmap.createScaledBitmap(mWeatherIcon, mIconWidth, mIconHeight, false);
+//            mWeatherIcon = BitmapFactory.decodeResource(resources, R.drawable.art_clear);
+//            mWeatherIcon = Bitmap.createScaledBitmap(mWeatherIcon, mIconWidth, mIconHeight, false);
+
+            apiClient.connect();
 
         }
 
@@ -297,8 +325,8 @@ public class MyWatchFace extends CanvasWatchFaceService {
                 case TAP_TYPE_TAP:
                     // The user has completed the tap gesture.
                     // TODO: Add code to handle the tap gesture.
-                    Toast.makeText(getApplicationContext(), R.string.message, Toast.LENGTH_SHORT)
-                            .show();
+//                    Toast.makeText(getApplicationContext(), R.string.message, Toast.LENGTH_SHORT)
+//                            .show();
                     break;
             }
             invalidate();
@@ -322,13 +350,19 @@ public class MyWatchFace extends CanvasWatchFaceService {
                     mCalendar.get(Calendar.MINUTE));
             canvas.drawText(text, mXOffset, mYOffset, mTextPaint);
             if(!isInAmbientMode()) {
-                canvas.drawText(mDate, mXDateOffset, mYDateOffset, mDatePaint);
-                canvas.drawText(mMaxTemp, mXMaxTempOffset, mYMaxTempOffset, mTempPaint);
-                canvas.drawText(mMinTemp, mXMinTempOffset, mYMinTempOffset, mTempPaint);
+                if(null != mDate) {
+                    canvas.drawText(mDate, mXDateOffset, mYDateOffset, mDatePaint);
+                }
+                if(null != mMaxTemp) {
+                    canvas.drawText(mMaxTemp, mXMaxTempOffset, mYMaxTempOffset, mTempPaint);
+                }
+                if(null != mMinTemp) {
+                    canvas.drawText(mMinTemp, mXMinTempOffset, mYMinTempOffset, mTempPaint);
+                }
                 if(mWeatherIcon != null) {
                     canvas.drawBitmap(mWeatherIcon, mXIconOffset, mYIconOffset, null);
                 } else{
-                    Log.v("Log", "weatherIcon is null");
+//                    Log.v("Log", "weatherIcon is null");
                 }
             }
         }
@@ -362,6 +396,88 @@ public class MyWatchFace extends CanvasWatchFaceService {
                 long delayMs = INTERACTIVE_UPDATE_RATE_MS
                         - (timeMs % INTERACTIVE_UPDATE_RATE_MS);
                 mUpdateTimeHandler.sendEmptyMessageDelayed(MSG_UPDATE_TIME, delayMs);
+            }
+        }
+
+        @Override
+        public void onConnected(@Nullable Bundle bundle) {
+            Log.v(LOG_TAG, "connected and checking for data change");
+            Wearable.DataApi.addListener(apiClient, this);
+
+        }
+
+
+        @Override
+        public void onConnectionSuspended(int i) {
+            Wearable.DataApi.removeListener(apiClient, this);
+
+        }
+
+        @Override
+        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+        }
+
+        @Override
+        public void onDataChanged(DataEventBuffer dataEventBuffer) {
+            Log.v(LOG_TAG, "data changed ");
+            for (DataEvent event : dataEventBuffer) {
+                if (event.getType() == DataEvent.TYPE_CHANGED) {
+
+
+                    // DataItem changed
+                    DataItem item = event.getDataItem();
+                    if (item.getUri().getPath().compareTo(DATA_TODAY) == 0) {
+                        DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
+                        mDate = dataMap.getString(WEARABLE_DATE);
+                        mMaxTemp = dataMap.getString(WEARABLE_HIGH_TEMP);
+                        mMinTemp = dataMap.getString(WEARABLE_LOW_TEMP);
+                        Asset asset = dataMap.getAsset(WEARABLE_IMAGE_RES);
+                        new LoadBitmapAsyncTask().execute(asset);
+
+                    }
+                } else if (event.getType() == DataEvent.TYPE_DELETED) {
+                    // DataItem deleted
+                }
+            }
+
+            invalidate();
+
+        }
+
+
+
+        private class LoadBitmapAsyncTask extends AsyncTask<Asset, Void, Bitmap> {
+            @Override
+            protected Bitmap doInBackground(Asset... params) {
+
+                if (params.length > 0) {
+
+                    Asset asset = params[0];
+
+                    InputStream assetInputStream = Wearable.DataApi.getFdForAsset(
+                            apiClient, asset).await().getInputStream();
+
+                    if (assetInputStream == null) {
+                        Log.e("wearable-receive", "Requested an unknown Asset.");
+                        return null;
+                    }
+                    return BitmapFactory.decodeStream(assetInputStream);
+
+                } else {
+                    Log.e("wearable-receive", "Asset must be non-null");
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Bitmap bitmap) {
+                if (bitmap != null) {
+                    Log.e("wearable-receive", "Setting forecast image..");
+                    mWeatherIcon = Bitmap.createScaledBitmap( bitmap, mIconWidth, mIconHeight, true);
+                    bitmap.recycle();
+                    invalidate();
+                }
             }
         }
     }

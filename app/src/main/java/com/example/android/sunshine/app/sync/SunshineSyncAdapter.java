@@ -103,9 +103,11 @@ GoogleApiClient.OnConnectionFailedListener{
     private final static String WEARABLE_LOW_TEMP = "lowTemp";
     private final static String WEARABLE_IMAGE_RES = "imageRes";
     private final static String WEARABLE_DATE = "dateToday";
-
+    GoogleApiClient mGoogleApiClient;
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+        Log.v(LOG_TAG, "connected and sending data");
+        syncWearable();
 
     }
 
@@ -131,6 +133,14 @@ GoogleApiClient.OnConnectionFailedListener{
 
     public SunshineSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                .addApi(Wearable.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+
+        mGoogleApiClient.connect();
+
     }
 
     @Override
@@ -412,6 +422,7 @@ GoogleApiClient.OnConnectionFailedListener{
                 updateMuzei();
                 notifyWeather();
                 syncWearable();
+
             }
             Log.d(LOG_TAG, "Sync Complete. " + cVVector.size() + " Inserted");
             setLocationStatus(getContext(), LOCATION_STATUS_OK);
@@ -549,13 +560,7 @@ GoogleApiClient.OnConnectionFailedListener{
     }
 
     private void syncWearable(){
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                .addApi(Wearable.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
 
-        mGoogleApiClient.connect();
         // Get today's data from the ContentProvider
         String location = Utility.getPreferredLocation(getContext());
         Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(
@@ -612,13 +617,15 @@ GoogleApiClient.OnConnectionFailedListener{
         Asset asset = Asset.createFromBytes(byteArrayOutputStream.toByteArray());
 
         putDataMapRequest.getDataMap().putAsset(WEARABLE_IMAGE_RES, asset);
+        putDataMapRequest.getDataMap().putLong("time", System.currentTimeMillis());
 
 
         PutDataRequest putDataRequest = putDataMapRequest.asPutDataRequest();
+        putDataMapRequest.setUrgent();
         Wearable.DataApi.putDataItem(mGoogleApiClient, putDataRequest).setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
             @Override
             public void onResult(@NonNull DataApi.DataItemResult dataItemResult) {
-                Log.v(LOG_TAG, "data sent" + dataItemResult.getStatus().isSuccess());
+                Log.v(LOG_TAG, "data sent " + dataItemResult.getStatus().isSuccess());
             }
         });
 
